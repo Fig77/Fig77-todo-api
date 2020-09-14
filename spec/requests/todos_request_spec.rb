@@ -17,7 +17,6 @@ RSpec.describe 'Todos', type: :request do
     end
   end
 
-
   # Test suite for GET /todos/:id
   describe 'GET /todos/:id' do
     before { get "/todos/#{todo_id}" }
