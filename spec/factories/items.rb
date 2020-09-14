@@ -1,7 +1,8 @@
+require 'faker'
 FactoryBot.define do
   factory :item do
-    name { Faker::StarWars.character }
+    name { Faker::Books::Lovecraft.deity }
     done { false }
-    todo_id nil
+    todo
   end
 end

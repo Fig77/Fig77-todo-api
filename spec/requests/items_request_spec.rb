@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'faker'
 
 RSpec.describe 'Items API', type: :request do
   let!(:todo) { create(:todo) }
@@ -7,7 +8,7 @@ RSpec.describe 'Items API', type: :request do
   let(:id) { items.first.id }
 
   describe "GET todos/:todo_id/items" do
-    before { get "todos/#{todo_id}/items" }
+    before { get "/todos/#{todo_id}/items" }
 
     context "when todo exists" do
       it "return status code 200" do
@@ -53,7 +54,7 @@ RSpec.describe 'Items API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couln't Find Item/)
+        expect(response.body).to match(/Couldn't find Item with/)
       end
     end
   end
