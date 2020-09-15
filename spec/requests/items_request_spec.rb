@@ -7,15 +7,15 @@ RSpec.describe 'Items API', type: :request do
   let(:todo_id) { todo.id }
   let(:id) { items.first.id }
 
-  describe "GET todos/:todo_id/items" do
+  describe 'GET todos/:todo_id/items' do
     before { get "/todos/#{todo_id}/items" }
 
-    context "when todo exists" do
-      it "return status code 200" do
+    context 'when todo exists' do
+      it 'return status code 200' do
         expect(response).to have_http_status(200)
       end
 
-      it "returns all todo items" do
+      it 'returns all todo items' do
         expect(json.size).to eq(20)
       end
     end
@@ -23,25 +23,25 @@ RSpec.describe 'Items API', type: :request do
     context "when todo doesn't exists" do
       let(:todo_id) { 0 }
 
-      it "return status code 404" do
+      it 'return status code 404' do
         expect(response).to have_http_status(404)
       end
 
-      it "returns a not found message" do
+      it 'returns a not found message' do
         expect(response.body).to match(/Couldn't find Todo/)
       end
     end
   end
 
-  describe "GET /todos/:todo_id/items/:id" do
+  describe 'GET /todos/:todo_id/items/:id' do
     before { get "/todos/#{todo_id}/items/#{id}" }
 
-    context "when todo item exists" do
-      it "returns status code 200 " do
+    context 'when todo item exists' do
+      it 'returns status code 200 ' do
         expect(response).to have_http_status(200)
       end
 
-      it "returns the item" do
+      it 'returns the item' do
         expect(json['id']).to eq(id)
       end
     end
@@ -59,13 +59,13 @@ RSpec.describe 'Items API', type: :request do
     end
   end
 
-  describe "POST /todos/:todo_id/items" do
-    let(:valid_attributes) { { name: "Visit Narnia", done: false} }
+  describe 'POST /todos/:todo_id/items' do
+    let(:valid_attributes) { { name: 'Visit Narnia', done: false } }
 
-    context "when request attributes are valid" do
+    context 'when request attributes are valid' do
       before { post "/todos/#{todo_id}/items", params: valid_attributes }
 
-      it "returns a status code 201" do
+      it 'returns a status code 201' do
         expect(response).to have_http_status(201)
       end
     end
@@ -84,7 +84,7 @@ RSpec.describe 'Items API', type: :request do
   end
 
   describe 'PUT /todos/:todo_id/items/:id' do
-    let(:valid_attributes) { { name: 'Mozart'} }
+    let(:valid_attributes) { { name: 'Mozart' } }
 
     before { put "/todos/#{todo_id}/items/#{id}", params: valid_attributes }
 
@@ -112,7 +112,7 @@ RSpec.describe 'Items API', type: :request do
     end
   end
 
-  describe "DELETE /todos/:id" do
+  describe 'DELETE /todos/:id' do
     before { delete "/todos/#{todo_id}/items/#{id}" }
 
     it 'returns status code 204' do
